@@ -53,7 +53,16 @@ class FilmController extends Controller
             'durasi' => 'required|string|max:100',
             'genre_id' => 'required|string|max:100'
         ])->validate();
-        $film = new Film($data);
+        $film = new Film();
+        $film->judul = $data['judul'];
+        $film->sutradara = $data['sutradara'];
+        $film->durasi = $data['durasi'];
+        $film->genre_id = $data['genre_id'];
+        if($request->poster){
+            $nama = $data['judul'].'.'.$request->poster->getClientOriginalExtension();
+            $film->poster = $nama;
+            $request->poster->move(public_path('/uploads'),$nama);
+        }
         $film->save();
         return redirect(route('filmList'));
     }
@@ -105,6 +114,15 @@ class FilmController extends Controller
         $film->sutradara = $data['sutradara'];
         $film->durasi = $data['sutradara'];
         $film->genre_id = $data['genre_id'];
+        if($request->poster){
+            $image_path = '/uploads/'. $film->poster;
+            if (file_exists($image_path)){
+                unlink($image_path);
+            }
+            $nama = $data['judul'].'.'.$request->poster->getClientOriginalExtension();
+            $film->poster = $nama;
+            $request->poster->move(public_path('/uploads'),$nama);
+        }
         $film->save();
         return redirect(route('filmList'));
     }

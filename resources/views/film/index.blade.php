@@ -36,6 +36,7 @@
                 <th>Sutradara</th>
                 <th>Durasi</th>
                 <th>Genre</th>
+                <th>Poster</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -58,8 +59,15 @@
                         {{$film->durasi}}
                     </td>
                     <td>
-
                         {{$film->genre->nama}}
+                    </td>
+                    <td>
+                        @if($film->poster == null)
+                            <img src="uploads/default.jpg" alt="" class="img-thumbnail" width="100px">
+
+                        @else
+                            <img src="uploads/{{$film->poster}}" alt="" class="img-thumbnail" width="100px">
+                        @endif
                     </td>
                     <td>
                         <a href="{{route('filmEdit',['id'=>$film->id])}}" class="btn btn-warning" role="button">edit</a>

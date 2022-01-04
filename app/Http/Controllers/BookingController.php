@@ -81,7 +81,7 @@ class BookingController extends Controller
      */
     public function edit(Booking $booking)
     {
-        
+
         $data = Studio::all();
         $data2 = Customer::all();
         return view('booking.edit', [

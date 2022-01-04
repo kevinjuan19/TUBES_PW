@@ -15,7 +15,8 @@ class Film extends Model
         'judul',
         'sutradara',
         'durasi',
-        'genre_id'
+        'genre_id',
+        'poster'
 
     ];
     public function genre(){

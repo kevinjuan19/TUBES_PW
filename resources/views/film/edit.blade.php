@@ -24,7 +24,7 @@
 	<div class="container-fluid">
 
 		{{-- main content here --}}
-        <form action="{{route('filmUpdate', ['id' => $film->id])}}" method="POST">
+        <form action="{{route('filmUpdate', ['id' => $film->id])}}" enctype="multipart/form-data" method="POST">
             @csrf
             <div class="form-group">
                 <label for="">Film Id</label>
@@ -51,6 +51,28 @@
                     @endforeach
                 </select>
 {{--                <input type="text" id="txtNameId" name="genre_id" class="form-control" required placeholder="Genre_id" value="{{$film->genre->id}}">--}}
+            </div>
+            <label for="">Poster</label>
+            <div class="row mb-3">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            @if($film->poster == null)
+                                <img src="../../uploads/default.jpg" class="img-thumbnail">
+
+                            @else
+                                <img src="../../uploads/{{$film->poster}}" class='img-thumbnail'>
+                            @endif
+
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="image" name='poster' accept="image/png, image/jpeg" >
+                                <label class="custom-file-label" for="image">Choose file</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
         </form>

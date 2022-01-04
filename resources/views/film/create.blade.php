@@ -24,7 +24,7 @@
 	<div class="container-fluid">
 
 		{{-- main content here --}}
-        <form action="{{(route('filmSave'))}}" method="POST">
+        <form action="{{(route('filmSave'))}}" enctype="multipart/form-data" method="POST">
             @csrf
             <div class="form-group">
                 <label for="">New Title Name</label>
@@ -46,6 +46,10 @@
                     @endforeach
                 </select>
 {{--                <input type="text" id="txtNameId" name="genre_id" class="form-control" required placeholder="Genre id">--}}
+            </div>
+            <div class="form-group">
+                <label for="">New Poster</label>
+                <input class="form-control form-control-sm p-0" type="file" id="txtNameId" name="poster" class="form-control" required placeholder="photo" accept="image/png, image/jpeg">
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
         </form>
